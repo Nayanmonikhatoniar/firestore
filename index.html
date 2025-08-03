@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire store - Ignite Your Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Krona+One&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base & Font Styles --- */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #E5E7EB;
+        }
+        .font-krona {
+            font-family: 'Krona One', sans-serif;
+        }
+
+        /* --- Gradient & Button Styles --- */
+        .gradient-text {
+            background: linear-gradient(90deg, #FF4500, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #FF4500, #FFA500);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px 0 rgba(255, 107, 0, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 7px 25px 0 rgba(255, 107, 0, 0.5);
+        }
+
+        /* --- Marquee Animation --- */
+        .marquee {
+            overflow: hidden;
+            position: relative;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            padding-right: 2rem; /* Add spacing between repeated content */
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- Scroll-triggered Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Misc Styles --- */
+        .timer-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card {
+              background: rgba(255, 255, 255, 0.03);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+    </style>
+</head>
+<body class="w-full overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 w-full z-50 p-4 flex justify-center items-center">
+        <div class="text-center">
+            <h1 class="font-krona text-3xl font-bold uppercase gradient-text">Fire Store</h1>
+            <p class="text-xs tracking-wider uppercase text-gray-400 mt-1">Born to fire</p>
+        </div>
+    </header>
+
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div class="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-orange-600 rounded-full mix-blend-hard-light filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-red-700 rounded-full mix-blend-hard-light filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
+    </div>
+
+    <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center p-4 relative z-10">
+        <div class="mb-6 reveal">
+            <svg class="w-24 h-24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGradient" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%" stop-color="#FFA500"/>
+                        <stop offset="100%" stop-color="#FF4500"/>
+                    </linearGradient>
+                </defs>
+                <path d="M12 2C12 2 5.613 9.463 5.613 13.5C5.613 18.047 8.462 22 12 22C15.538 22 18.387 18.047 18.387 13.5C18.387 9.463 12 2 12 2ZM12 20.5C9.873 20.5 7.113 17.213 7.113 13.5C7.113 10.825 9.813 6.95 12 4.6C14.187 6.95 16.887 10.825 16.887 13.5C16.887 17.213 14.127 20.5 12 20.5Z" fill="url(#logoGradient)"/>
+                <path d="M14.5 14.5C14.5 15.88 13.38 17 12 17C10.62 17 9.5 15.88 9.5 14.5C9.5 13.12 12 9 12 9C12 9 14.5 13.12 14.5 14.5Z" fill="url(#logoGradient)"/>
+            </svg>
+        </div>
+
+        <h1 class="font-krona text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-wider mb-4 reveal" style="transition-delay: 100ms;">
+            <span class="gradient-text">IGNITE</span> YOUR STYLE
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mb-8 reveal" style="transition-delay: 200ms;">
+            The wait is almost over. A new era of street fashion is dawning. Exclusive, defiant, and built for the bold.
+        </p>
+
+        <div id="countdown" class="grid grid-cols-4 gap-2 md:gap-4 mb-10 text-center w-full max-w-lg reveal" style="transition-delay: 300ms;">
+            <div class="timer-box p-4 rounded-lg"><div id="days" class="text-3xl md:text-5xl font-bold">00</div><div class="text-xs uppercase tracking-widest text-gray-400">Days</div></div>
+            <div class="timer-box p-4 rounded-lg"><div id="hours" class="text-3xl md:text-5xl font-bold">00</div><div class="text-xs uppercase tracking-widest text-gray-400">Hours</div></div>
+            <div class="timer-box p-4 rounded-lg"><div id="minutes" class="text-3xl md:text-5xl font-bold">00</div><div class="text-xs uppercase tracking-widest text-gray-400">Minutes</div></div>
+            <div class="timer-box p-4 rounded-lg"><div id="seconds" class="text-3xl md:text-5xl font-bold">00</div><div class="text-xs uppercase tracking-widest text-gray-400">Seconds</div></div>
+        </div>
+        <a href="#about" class="reveal" style="transition-delay: 400ms;">
+            <svg class="w-8 h-8 text-gray-600 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+    </section>
+
+    <section class="bg-gray-900 py-4 border-t border-b border-gray-800 transform -rotate-2 my-16">
+        <div class="marquee font-krona text-xl md:text-2xl">
+            <div class="marquee-content">
+                <span class="text-white mx-4">EXCLUSIVE DROPS</span> <span class="gradient-text mx-4">LIMITED EDITION</span> <span class="text-white mx-4">UNLEASH YOUR STYLE</span> <span class="gradient-text mx-4">COMING SOON</span>
+                <span class="text-white mx-4">EXCLUSIVE DROPS</span> <span class="gradient-text mx-4">LIMITED EDITION</span> <span class="text-white mx-4">UNLEASH YOUR STYLE</span> <span class="gradient-text mx-4">COMING SOON</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-4 container mx-auto max-w-5xl text-center">
+        <h2 class="font-krona text-3xl md:text-5xl font-bold mb-6 reveal"><span class="gradient-text">THE</span> PHILOSOPHY</h2>
+        <p class="text-lg text-gray-400 max-w-3xl mx-auto reveal" style="transition-delay: 100ms;">
+            FIRE isn't just a brand; it's a statement. We were born from the idea that clothing is a canvas for your identity. We reject fast fashion and embrace authentic, high-quality apparel that lasts. Our designs are for those who lead, not follow.
+        </p>
+    </section>
+
+    <section id="vibe" class="py-20 px-4 container mx-auto max-w-6xl">
+        <h2 class="font-krona text-3xl md:text-5xl font-bold mb-12 text-center reveal">CRAFTING <span class="gradient-text">THE VIBE</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="card p-8 rounded-xl text-center reveal">
+                <h3 class="font-krona text-2xl font-bold mb-3">QUALITY FIRST</h3>
+                <p class="text-gray-400">Premium fabrics and meticulous construction. Our gear is built to be worn, lived in, and loved.</p>
+            </div>
+            <div class="card p-8 rounded-xl text-center reveal" style="transition-delay: 150ms;">
+                <h3 class="font-krona text-2xl font-bold mb-3">DEFIANT DESIGN</h3>
+                <p class="text-gray-400">Bold graphics and unique silhouettes. We create pieces that start conversations and turn heads.</p>
+            </div>
+            <div class="card p-8 rounded-xl text-center reveal" style="transition-delay: 300ms;">
+                <h3 class="font-krona text-2xl font-bold mb-3">LIMITED RUNS</h3>
+                <p class="text-gray-400">Exclusivity is key. We produce in small batches to ensure you're wearing something truly special.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="notify" class="py-20 px-4 bg-gray-900/50">
+        <div class="container mx-auto max-w-2xl text-center">
+             <h2 class="font-krona text-3xl md:text-4xl font-bold mb-4 reveal">DON'T MISS THE <span class="gradient-text">DROP</span></h2>
+            <p class="text-lg text-gray-400 mb-8 reveal" style="transition-delay: 100ms;">
+                Join the inner circle. Get exclusive access, early launch notifications, and behind-the-scenes content.
+            </p>
+            <form id="subscribeForm" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto reveal" style="transition-delay: 200ms;">
+                <input type="email" id="emailInput" placeholder="Enter your email address" class="flex-grow bg-gray-800 border border-gray-700 rounded-md py-3 px-4 focus:ring-2 focus:ring-orange-500 focus:outline-none text-white placeholder-gray-500 w-full" required>
+                <button type="submit" class="btn-primary text-white font-bold py-3 px-8 rounded-md w-full sm:w-auto">
+                    NOTIFY ME
+                </button>
+            </form>
+            <p id="formMessage" class="mt-4 h-6"></p>
+        </div>
+    </section>
+
+    <footer class="py-12 px-4 text-center text-gray-500">
+        <p class="font-krona gradient-text text-2xl mb-4">FIRE</p>
+        <div class="flex justify-center gap-6 mb-6">
+            <a href="https://www.instagram.com/fire_cloth.in?igsh=MXh2MTlnejBiZHVuMw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="hover:text-orange-500 transition-colors text-lg">Instagram</a>
+            <a href="#" class="hover:text-orange-500 transition-colors text-lg">TikTok</a>
+            <a href="#" class="hover:text-orange-500 transition-colors text-lg">X / Twitter</a>
+        </div>
+        <p class="italic text-gray-400 mb-6">"Born to fire"</p>
+        <p>&copy; <span id="year"></span> Fire store. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Countdown Timer Logic ---
+            function startCountdown() {
+                const launchDate = new Date();
+                launchDate.setDate(launchDate.getDate() + 4); // Set launch 4 days from now
+                const launchTime = launchDate.getTime();
+
+                const countdownElement = document.getElementById('countdown');
+                if (!countdownElement) return;
+
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+
+                const timerInterval = setInterval(() => {
+                    const now = new Date().getTime();
+                    const distance = launchTime - now;
+
+                    if (distance < 0) {
+                        clearInterval(timerInterval);
+                        countdownElement.innerHTML = '<div class="col-span-4 text-3xl font-bold font-krona gradient-text">WE ARE LIVE!</div>';
+                        return;
+                    }
+
+                    const format = (num) => num.toString().padStart(2, '0');
+                    daysEl.textContent = format(Math.floor(distance / (1000 * 60 * 60 * 24)));
+                    hoursEl.textContent = format(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                    minutesEl.textContent = format(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                    secondsEl.textContent = format(Math.floor((distance % (1000 * 60)) / 1000));
+                }, 1000);
+            }
+
+            // --- Email Subscription Form Logic ---
+            function handleSubscription() {
+                const form = document.getElementById('subscribeForm');
+                if (!form) return;
+                
+                const emailInput = document.getElementById('emailInput');
+                const messageEl = document.getElementById('formMessage');
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = emailInput.value;
+                    
+                    if (email && /\S+@\S+\.\S+/.test(email)) {
+                        console.log(`Email submitted for notification: ${email}`);
+                        messageEl.textContent = 'Awesome! You\'re on the list.';
+                        messageEl.className = 'mt-4 h-6 text-green-400';
+                        emailInput.value = '';
+                        setTimeout(() => { messageEl.textContent = ''; }, 5000);
+                    } else {
+                        messageEl.textContent = 'Please enter a valid email.';
+                        messageEl.className = 'mt-4 h-6 text-red-400';
+                    }
+                });
+            }
+
+            // --- Scroll Animation Logic ---
+            function handleScrollAnimations() {
+                const revealElements = document.querySelectorAll('.reveal');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                revealElements.forEach(el => observer.observe(el));
+            }
+
+            // --- Set current year in footer ---
+            function setFooterYear() {
+                const yearEl = document.getElementById('year');
+                if(yearEl) yearEl.textContent = new Date().getFullYear();
+            }
+
+            // --- Initialize all functions ---
+            startCountdown();
+            handleSubscription();
+            handleScrollAnimations();
+            setFooterYear();
+        });
+    </script>
+
+</body>
+</html>
